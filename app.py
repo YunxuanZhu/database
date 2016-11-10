@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, redirect
 app = Flask(__name__)
 
 
@@ -14,8 +14,11 @@ def login():
 def authentication():
 	username=request.form["username"]
 	password=request.form["password"]
-	print(username)
-	print(password)
+	usertype="Event Planner"
+	eid=1
+	vid=1
+	if username == "lily" and password == "hello" and usertype == "Event Planner":
+		return render_template("eventplanner.html", name=username, eid=eid, vid=vid)
 	return username
 
 @app.route("/register", methods=['POST'])
@@ -34,7 +37,7 @@ def createuser():
 	email=request.form["email"]
 	phone=request.form["phone"]
 	usertype=request.form["usertype"]
-	return usertype	
+	return redirect(url_for("login"))	
 
 
 if __name__ == "__main__":
