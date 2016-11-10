@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<head>
+	<!-- Custom Fonts --> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>   
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>   
+	<link type="text/css" rel="stylesheet" href="/static/login.css"> 
+</head>
+<html lang="en">
+<body>
+	<form action="/createuser" method="post" id="register" enctype="multipart/form-data"></form>
+	<div class="page-header col-md-offset-4">
+		<h1>Register</h1>
+	</div>
+	<div class="row col-md-5 col-md-offset-4">
+		<div class="input-group col-md-6">
+			<span class="input-group-addon" id="username">User Name</span>
+			<input type="text" form="register" class="form-control" name="username" placeholder="user name" aria-describedby="basic-addon1">
+		</div>
+	</div>
+	<div class="row col-md-5 col-md-offset-4 top-buffer">
+		<div class="input-group col-md-6">
+			<span class="input-group-addon" id="firstname">First Name</span>
+			<input form="register" type="text" class="form-control" name="firstname" placeholder="first name" aria-describedby="basic-addon1">
+		</div>
+	</div>
+	<div class="row col-md-5 col-md-offset-4 top-buffer">
+		<div class="input-group col-md-6">
+			<span class="input-group-addon" id="lastname">Last Name</span>
+			<input form="register" type="text" class="form-control" name="lastname" placeholder="last name" aria-describedby="basic-addon1">
+		</div>
+	</div>
+	<div class="row col-md-5 col-md-offset-4 top-buffer">
+		<div class="input-group col-md-6">
+			<span class="input-group-addon" id="password">Password</span>
+			<input form="register" type="password" class="form-control" name="password" placeholder="password" aria-describedby="basic-addon1">
+		</div>
+	</div>
+	<div class="row col-md-9 col-md-offset-4 top-buffer">
+		<div class="input-group col-md-6">
+			<span class="input-group-addon" id="dob">Date of Birth</span>
+			<input form="register" type="text" class="form-control" name="dob" placeholder="Please input in the following form: mm/dd/yyyy" aria-describedby="basic-addon1">
+		</div>
+	</div>
+	<div class="row col-md-5 col-md-offset-4 top-buffer">
+		<div class="input-group col-md-6">
+			<label for="gender">Gender</label>
+			<label class="radio-inline col-md-offset-1">
+		      <input type="radio" id="gender" form="register" name="gender" value="female">F
+		    </label>
+		    <label class="radio-inline">
+		      <input type="radio" id="gender" form="register" name="gender" value="male">M
+		    </label>
+		</div>
+	</div>
+	<div class="row col-md-9 col-md-offset-4 top-buffer">
+		<div class="input-group col-md-6">
+			<span class="input-group-addon" id="address">Address</span>
+			<input form="register" type="text" class="form-control" name="address" placeholder="address" aria-describedby="basic-addon1">
+		</div>
+	</div>
+	<div class="row col-md-5 col-md-offset-4 top-buffer">
+		<div class="input-group col-md-10">
+			<label for="usertype">User Type</label>
+			<label class="radio-inline col-md-offset-1">
+		      <input type="radio" form="register" id="usertype" name="usertype" value="Event Planner">Event Planner
+		    </label>
+		    <label class="radio-inline">
+		      <input type="radio" form="register" id="usertype" name="usertype" value="Venue Manager">Venue Manager
+		    </label>
+		</div>
+	</div>
+	<div class="row col-md-9 col-md-offset-4 top-buffer">
+		<div class="input-group col-md-6">
+			<span class="input-group-addon" id="email">Email</span>
+			<input form="register" type="text" class="form-control" name="email" placeholder="email" aria-describedby="basic-addon1">
+		</div>
+	</div>
+	<div class="row col-md-7 col-md-offset-4 top-buffer">
+		<div class="input-group col-md-6">
+			<span class="input-group-addon" id="phone">Phone</span>
+			<input form="register" type="text" class="form-control" name="phone" placeholder="phone" aria-describedby="basic-addon1">
+		</div>
+	</div>
+	<div class="row col-md-5 col-md-offset-4 top-buffer">
+		<button type="submit" form="register" class="btn btn-default">Submit</button>
+	</div>
+</body>
+</html>
