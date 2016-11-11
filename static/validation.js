@@ -23,6 +23,7 @@ function checkValidation () {
 	invalidfield=emptycheck(invalidfield,"phone")
 	return invalidfield;
 }
+
 $(document).ready(function() {
 	$("#register").on("submit", function() {
 		var validation = checkValidation();
