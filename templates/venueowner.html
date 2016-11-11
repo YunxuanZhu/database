@@ -15,6 +15,7 @@
 	<form action="/addevent" method="post" id="add" enctype="multipart/form-data"></form> -->
 	<form action="/registervenue" method="post" id="register" enctype="multipart/form-data"></form>
 	<form action="/managevenue" method="post" id="manage" enctype="multipart/form-data"></form>
+	<form action="/addtimeslot" method="post" id="addslot" enctype="multipart/form-data"></form>
 	<div class="page-header col-md-6 col-md-offset-3">
 		<h1>Welcome {{name}}!</h1>
 	</div>
@@ -22,6 +23,7 @@
 	<input type="hidden" id="username" form="add" name="username" value="{{name}}"> -->
 	<input type="hidden" id="username" form="register" name="username" value="{{name}}">
 	<input type="hidden" id="username" form="manage" name="username" value="{{name}}">
+	<input type="hidden" id="username" form="addslot" name="username" value="{{name}}">
 	<div class="row col-md-4 col-md-offset-3">
 		<ul class="nav nav-tabs" id="navbar">
 		  <!-- <li role="presentation"><a href="#">My Events</a></li>
@@ -182,6 +184,12 @@
 		  <li class=""><a href="#">Venue: {{item}}</a></li>
 		  {% endfor %}
 		</ul>
+		<ul class="list-group row col-md-9 col-md-offset-2" id="options">
+		  <li class="col-md-3"><a href="#">Edit Venue</a></li>
+		  <li class="col-md-3"><a href="#">Edit Time Slot</a></li>
+		  <li class="col-md-3"><a href="#">Add Time Slot</a></li>
+		  <li class="col-md-3"><a href="#">Confirm Requests</a></li>
+		</ul>
 	<div class="container" id="venue_on_change">
 	<div class="row col-md-5 col-md-offset-4">
 		<div class="input-group col-md-6">
@@ -217,6 +225,39 @@
 	<div class="row col-md-5 col-md-offset-4 top-buffer">
 		<button type="submit" form="manage" class="btn btn-default">Submit</button>
 	</div>
+	</div>
+	</div>
+
+
+	<div class="container" id="add_time_slot">
+	<div class="row col-md-5 col-md-offset-4">
+		<div class="input-group col-md-6">
+			<span class="input-group-addon">Time Slot Id</span>
+			<input type="text" class="form-control" id="tsid" aria-describedby="basic-addon1" value="" disabled>
+			<!-- <input type="hidden" form="addslot" name="tsvid" id="vidmform"> -->
+		</div>
+	</div>
+	<div class="row col-md-7 col-md-offset-4 top-buffer">
+		<div class="input-group col-md-6">
+			<span class="input-group-addon">Venue Id</span>
+			<input form="addslot" type="text" class="form-control" name="vid" id="vidts" aria-describedby="basic-addon1" disabled>
+			<input form="addslot" type="hidden" name="vid" id="vidtsform" aria-describedby="basic-addon1">
+		</div>
+	</div>
+	<div class="row col-md-12 col-md-offset-4 top-buffer">
+		<div class="input-group col-md-6">
+			<span class="input-group-addon">Date From</span>
+			<input type="text" class="form-control" name="datefrom" form="addslot" id="datefrom" placeholder="datefrom" aria-describedby="basic-addon1">
+		</div>
+	</div>
+	<div class="row col-md-5 col-md-offset-4 top-buffer">
+		<div class="input-group col-md-6">
+			<span class="input-group-addon">Date To</span>
+			<input form="addslot" type="text" class="form-control" name="dateto" id="dateto" aria-describedby="basic-addon1">
+		</div>
+	</div>
+	<div class="row col-md-5 col-md-offset-4 top-buffer">
+		<button type="submit" form="addslot" class="btn btn-default">Submit</button>
 	</div>
 	</div>
 </body>

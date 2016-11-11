@@ -78,6 +78,14 @@ def registervenue():
 	total_vid=[1,2]
 	return render_template("venueowner.html", name=username, vid=total_vid)
 
+@app.route("/addtimeslot", methods=['POST'])
+def addtimeslot():
+	username=request.form['username']
+	vid=[1,2]
+	return render_template("venueowner.html", name=username, vid=vid)
+
+
+
 @app.route("/register", methods=['POST'])
 def register():
 	return render_template("register.html")
