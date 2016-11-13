@@ -1,144 +1,38 @@
 <!DOCTYPE html>
 <head>
-	<!-- Custom Fonts --> 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>   
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>   
 	<script src="/static/panel.js"></script>
-	<script src="/static/whichvenue.js"></script>
 	<link type="text/css" rel="stylesheet" href="/static/login.css"> 
 </head>
 <html lang="en">
 <body>
-	<!-- <form action="/editevent" method="post" id="edit" enctype="multipart/form-data"></form>
-	<form action="/addevent" method="post" id="add" enctype="multipart/form-data"></form> -->
+	{% block javascript %}
+	    <script type="text/javascript">
+	        {% include "whichvenue.js" %}
+	    </script>
+	    <!-- The contents of myscript.js will be loaded inside the script tag -->
+	{% endblock %}
+
 	<form action="/registervenue" method="post" id="register" enctype="multipart/form-data"></form>
 	<form action="/managevenue" method="post" id="manage" enctype="multipart/form-data"></form>
 	<form action="/addtimeslot" method="post" id="addslot" enctype="multipart/form-data"></form>
+	<form action="/reservation" method="post" id="reservation" enctype="multipart/form-data"></form>
 	<div class="page-header col-md-6 col-md-offset-3">
 		<h1>Welcome {{name}}!</h1>
 	</div>
-	<!-- <input type="hidden" id="username" form="edit" name="username" value="{{name}}">
-	<input type="hidden" id="username" form="add" name="username" value="{{name}}"> -->
 	<input type="hidden" id="username" form="register" name="username" value="{{name}}">
 	<input type="hidden" id="username" form="manage" name="username" value="{{name}}">
 	<input type="hidden" id="username" form="addslot" name="username" value="{{name}}">
+	<input type="hidden" id="username" form="reservation" name="username" value="{{name}}">
 	<div class="row col-md-4 col-md-offset-3">
 		<ul class="nav nav-tabs" id="navbar">
-		  <!-- <li role="presentation"><a href="#">My Events</a></li>
-		  <li role="presentation"><a href="#">Create Event</a></li> -->
 		  <li role="presentation"><a href="#">Register Venue</a></li>
 		  <li role="presentation"><a href="#">Manage Venue</a></li>
 		</ul>
 	</div>
-
-	<!-- <div class="container" id="my_event">
-	<ul class="list-group col-md-1 col-md-offset-5 top-buffer" id="which_event">
-	  {% for item in eid %}
-	  <li class=""><a href="#">Event: {{item}}</a></li>
-	  {% endfor %}
-	</ul>
-
-	<div class="container" id="event_on_change">
-	<div class="row col-md-4 col-md-offset-4">
-		<div class="input-group col-md-6">
-			<span class="input-group-addon">Event Id</span>
-			<input type="text" form="edit" class="form-control" name="eid" id="eid" aria-describedby="basic-addon1" value="{{eid}}">
-		</div>
-	</div>
-	<div class="row col-md-7 col-md-offset-4 top-buffer">
-		<div class="input-group col-md-6">
-			<span class="input-group-addon">Title</span>
-			<input form="edit" type="text" class="form-control" name="title" id="title" aria-describedby="basic-addon1" value="{{title}}">
-		</div>
-	</div>
-	<div class="row col-md-12 col-md-offset-4 top-buffer">
-		<div class="input-group col-md-6">
-			<span class="input-group-addon">Description</span>
-			<input form="edit" type="text" class="form-control" name="description" id="description" value="{{description}}" aria-describedby="basic-addon1">
-		</div>
-	</div>
-	<div class="row col-md-5 col-md-offset-4 top-buffer">
-		<div class="input-group col-md-6">
-			<span class="input-group-addon">Organizer</span>
-			<input form="edit" type="text" class="form-control" name="organizer" id="organizer" value="{{name}}" aria-describedby="basic-addon1" disabled>
-		</div>
-	</div>
-	<div class="row col-md-7 col-md-offset-4 top-buffer">
-		<div class="input-group col-md-6">
-			<span class="input-group-addon">Budget</span>
-			<input form="edit" type="text" class="form-control" name="budget" id="budget" value="{{budget}}" aria-describedby="basic-addon1">
-		</div>
-	</div>
-	<div class="row col-md-7 col-md-offset-4 top-buffer">
-		<div class="input-group col-md-6">
-			<span class="input-group-addon">Dress Code</span>
-			<input form="edit" type="text" class="form-control" name="dresscode" id="dresscode" value="{{dresscode}}" aria-describedby="basic-addon1">
-		</div>
-	</div>
-	<div class="row col-md-7 col-md-offset-4 top-buffer">
-		<div class="input-group col-md-6">
-			<span class="input-group-addon">Sponsor</span>
-			<input form="edit" type="text" class="form-control" name="sponsor" id="sponsor" value="{{sponsor}}" aria-describedby="basic-addon1">
-		</div>
-	</div>
-	<div class="row col-md-5 col-md-offset-4 top-buffer">
-		<button type="submit" form="edit" class="btn btn-default">Submit</button>
-	</div>
-	</div>
-	</div>
-
-
-
-	<div class="container" id="new_event">
-	<div class="row col-md-5 col-md-offset-4 top-buffer">
-		<div class="input-group col-md-6">
-			<span class="input-group-addon">Event Id</span>
-			<input type="text" form="add" class="form-control" name="eid" id="eidnew" aria-describedby="basic-addon1" placeholder="eid">
-		</div>
-	</div>
-	<div class="row col-md-7 col-md-offset-4 top-buffer">
-		<div class="input-group col-md-6">
-			<span class="input-group-addon">Tile</span>
-			<input form="add" type="text" class="form-control" name="title" id="titlenew" aria-describedby="basic-addon1" placeholder="title">
-		</div>
-	</div>
-	<div class="row col-md-12 col-md-offset-4 top-buffer">
-		<div class="input-group col-md-6">
-			<span class="input-group-addon">Description</span>
-			<input form="add" type="text" class="form-control" name="description" id="descriptionnew" placeholder="description" aria-describedby="basic-addon1">
-		</div>
-	</div>
-	<div class="row col-md-5 col-md-offset-4 top-buffer">
-		<div class="input-group col-md-6">
-			<span class="input-group-addon">Organizer</span>
-			<input form="add" type="text" class="form-control" name="organizer" id="organizernew" placeholder="name" aria-describedby="basic-addon1">
-		</div>
-	</div>
-	<div class="row col-md-7 col-md-offset-4 top-buffer">
-		<div class="input-group col-md-6">
-			<span class="input-group-addon">Budget</span>
-			<input form="add" type="text" class="form-control" name="budget" id="budgetnew" placeholder="budget" aria-describedby="basic-addon1">
-		</div>
-	</div>
-	<div class="row col-md-7 col-md-offset-4 top-buffer">
-		<div class="input-group col-md-6">
-			<span class="input-group-addon">Dress Code</span>
-			<input form="add" type="text" class="form-control" name="dresscode" id="dresscodenew" placeholder="dresscode" aria-describedby="basic-addon1">
-		</div>
-	</div>
-	<div class="row col-md-7 col-md-offset-4 top-buffer">
-		<div class="input-group col-md-6">
-			<span class="input-group-addon">Sponsor</span>
-			<input form="add" type="text" class="form-control" name="sponsor" id="sponsornew" placeholder="sponsor" aria-describedby="basic-addon1">
-		</div>
-	</div>
-	<div class="row col-md-5 col-md-offset-4 top-buffer">
-		<button type="submit" form="add" class="btn btn-default">Submit</button>
-	</div>
-	</div> -->
-
 
 	<div class="container" id="new_venue">
 	<div class="row col-md-5 col-md-offset-4 top-buffer">
@@ -172,7 +66,7 @@
 		</div>
 	</div>
 	<div class="row col-md-5 col-md-offset-4 top-buffer">
-		<button type="submit" form="register" class="btn btn-default">Submit</button>
+		<button type="submit" form="register" class="btn btn-default">Register</button>
 	</div>
 	</div>
 
@@ -180,53 +74,59 @@
 
 	<div class="container" id="my_venue">
 		<ul class="list-group col-md-1 col-md-offset-5 top-buffer" id="which_venue">
-		  {% for item in vid %}
-		  <li class=""><a href="#">Venue: {{item}}</a></li>
+		  {% for key, value in venue.items() %}
+		  <li class=""><a href="#">Venue: {{key}}</a></li>
 		  {% endfor %}
 		</ul>
-		<ul class="list-group row col-md-9 col-md-offset-2" id="options">
+		<ul class="list-group row col-md-9 col-md-offset-3" id="options">
 		  <li class="col-md-3"><a href="#">Edit Venue</a></li>
-		  <li class="col-md-3"><a href="#">Edit Time Slot</a></li>
 		  <li class="col-md-3"><a href="#">Add Time Slot</a></li>
 		  <li class="col-md-3"><a href="#">Confirm Requests</a></li>
 		</ul>
+		<input type="hidden" id="selected_venue">
+
 	<div class="container" id="venue_on_change">
-	<div class="row col-md-5 col-md-offset-4">
+	{% for key, value in venue.items() %}
+	{% set id="venue_on_change"+key|string %}
+	<div class="container" id="{{id}}">
+	<div class="row col-md-5 col-md-offset-4 top-buffer">
 		<div class="input-group col-md-6">
 			<span class="input-group-addon">Venue Id</span>
-			<input type="text" class="form-control" id="vidm" aria-describedby="basic-addon1" value="{{vid}}" disabled>
-			<input type="hidden" form="manage" name="vid" id="vidmform">
+			<input type="text" class="form-control" id="vidm"+"{{key}}" aria-describedby="basic-addon1" value="{{key}}" disabled>
+			<input type="hidden" value="{{key}}" form="manage" name="vid" id="vidmform">
 		</div>
 	</div>
 	<div class="row col-md-7 col-md-offset-4 top-buffer">
 		<div class="input-group col-md-6">
 			<span class="input-group-addon">Name</span>
-			<input form="manage" type="text" class="form-control" name="vname" id="vnamem" aria-describedby="basic-addon1" placeholder="name">
+			<input form="manage" type="text" class="form-control" name="vname" id="vnamem" aria-describedby="basic-addon1" value="{{value['name']}}">
 		</div>
 	</div>
 	<div class="row col-md-12 col-md-offset-4 top-buffer">
 		<div class="input-group col-md-6">
 			<span class="input-group-addon">Address</span>
-			<input form="manage" type="text" class="form-control" name="address" id="addressm" placeholder="address" aria-describedby="basic-addon1">
+			<input form="manage" type="text" class="form-control" name="address" id="addressm" value="{{value['address']}}" aria-describedby="basic-addon1">
 		</div>
 	</div>
 	<div class="row col-md-5 col-md-offset-4 top-buffer">
 		<div class="input-group col-md-6">
 			<span class="input-group-addon">Capacity</span>
-			<input form="manage" type="text" class="form-control" name="capacity" id="capacitym" placeholder="capacity" aria-describedby="basic-addon1">
+			<input form="manage" type="text" class="form-control" name="capacity" id="capacitym" value="{{value['capacity']}}" aria-describedby="basic-addon1">
 		</div>
 	</div>
 	<div class="row col-md-7 col-md-offset-4 top-buffer">
 		<div class="input-group col-md-6">
 			<span class="input-group-addon">Facility</span>
-			<input form="manage" type="text" class="form-control" name="facility" id="facilitym" placeholder="facility" aria-describedby="basic-addon1">
+			<input form="manage" type="text" class="form-control" name="facility" id="facilitym" value="{{value['facility']}}" aria-describedby="basic-addon1">
 		</div>
 	</div>
 	<div class="row col-md-5 col-md-offset-4 top-buffer">
-		<button type="submit" form="manage" class="btn btn-default">Submit</button>
+		<button type="submit" form="manage" class="btn btn-default">Finish Editing</button>
 	</div>
 	</div>
+	{% endfor %}
 	</div>
+	
 
 
 	<div class="container" id="add_time_slot">
@@ -234,31 +134,69 @@
 		<div class="input-group col-md-6">
 			<span class="input-group-addon">Time Slot Id</span>
 			<input type="text" class="form-control" id="tsid" aria-describedby="basic-addon1" value="" disabled>
-			<!-- <input type="hidden" form="addslot" name="tsvid" id="vidmform"> -->
+			<input type="hidden" form="addslot" name="tsid" id="tsidform">
+		</div>
+	</div>
+	<div class="row col-md-5 col-md-offset-4 top-buffer">
+		<div class="input-group col-md-6">
+			<span class="input-group-addon">Venue Id</span>
+			<input form="addslot" type="text" class="form-control" id="vidts" aria-describedby="basic-addon1" disabled>
+			<input form="addslot" type="hidden" name="vid" id="vidtsform" aria-describedby="basic-addon1">
+		</div>
+	</div>
+	<div class="row col-md-10 col-md-offset-4 top-buffer">
+		<div class="input-group col-md-6">
+			<span class="input-group-addon">Date From</span>
+			<input type="text" class="form-control" name="datefrom" form="addslot" id="datefrom" placeholder="Please input in format: mm/dd/yyyy" aria-describedby="basic-addon1">
+		</div>
+	</div>
+	<div class="row col-md-10 col-md-offset-4 top-buffer">
+		<div class="input-group col-md-6">
+			<span class="input-group-addon">Date To</span>
+			<input form="addslot" type="text" class="form-control" name="dateto" id="dateto" placeholder="Please input in format: mm/dd/yyyy" aria-describedby="basic-addon1">
+		</div>
+	</div>
+	<div class="row col-md-5 col-md-offset-4 top-buffer">
+		<button type="submit" form="addslot" class="btn btn-default">Add</button>
+	</div>
+	</div>
+
+
+	<div class="container" id="confirm_request">
+	{% for key, value in venue.items() %}
+	{% set id="confirm_request"+key|string %}
+	<div class="container" id="{{id}}">
+	<div class="row col-md-7 col-md-offset-4">
+		<div class="input-group col-md-6">
+			<span class="input-group-addon">Reservation Id</span>
+			<input type="text" class="form-control" id="resid" aria-describedby="basic-addon1" value="{{value['request']['resid']}}" disabled>
+			<input type="hidden" form="reservation" name="resid" value="{{value['request']['resid']}}" id="residform">
 		</div>
 	</div>
 	<div class="row col-md-7 col-md-offset-4 top-buffer">
 		<div class="input-group col-md-6">
-			<span class="input-group-addon">Venue Id</span>
-			<input form="addslot" type="text" class="form-control" name="vid" id="vidts" aria-describedby="basic-addon1" disabled>
-			<input form="addslot" type="hidden" name="vid" id="vidtsform" aria-describedby="basic-addon1">
+			<span class="input-group-addon">Event Id</span>
+			<input type="text" class="form-control" id="vidre" value="{{value['request']['eventid']}}" aria-describedby="basic-addon1" disabled>
+			<input form="reservation" type="hidden" name="vid" value="{{value['request']['eventid']}}" id="vidreform" aria-describedby="basic-addon1">
 		</div>
 	</div>
-	<div class="row col-md-12 col-md-offset-4 top-buffer">
+	<div class="row col-md-7 col-md-offset-4 top-buffer">
 		<div class="input-group col-md-6">
-			<span class="input-group-addon">Date From</span>
-			<input type="text" class="form-control" name="datefrom" form="addslot" id="datefrom" placeholder="datefrom" aria-describedby="basic-addon1">
+			<span class="input-group-addon">Time Slot Id</span>
+			<input type="text" class="form-control" id="tsidre" value="{{value['request']['tsid']}}" aria-describedby="basic-addon1" disabled>
+			<input form="reservation" type="hidden" name="tsid" value="{{value['request']['tsid']}}" id="tsidreform" aria-describedby="basic-addon1">
 		</div>
 	</div>
 	<div class="row col-md-5 col-md-offset-4 top-buffer">
-		<div class="input-group col-md-6">
-			<span class="input-group-addon">Date To</span>
-			<input form="addslot" type="text" class="form-control" name="dateto" id="dateto" aria-describedby="basic-addon1">
-		</div>
+		<button type="submit" form="reservation" class="btn btn-default" name="response" value="confirm">Confirm</button>
 	</div>
 	<div class="row col-md-5 col-md-offset-4 top-buffer">
-		<button type="submit" form="addslot" class="btn btn-default">Submit</button>
+		<button type="submit" form="reservation" class="btn btn-default" name="response" value="decline">Decline</button>
 	</div>
 	</div>
+	{% endfor %}
+	</div>
+	</div>
+
 </body>
 </html>

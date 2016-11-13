@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>   
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>   
+	<script src="/static/invitepanel.js"></script>
+	<link type="text/css" rel="stylesheet" href="/static/login.css"> 
+</head>
+<html lang="en">
+<body>
+<div class="page-header col-md-6 col-md-offset-3">
+	<h1>Inventory</h1>
+</div>
+
+<form action="/newitem" method="post" id="newitem" enctype="multipart/form-data"></form>
+
+<input type="hidden" id="username" form="newitem" name="username" value="{{name}}">
+<input type="hidden" id="eid" form="newitem" name="eid" value="{{eid}}">
+
+{% for key,value in inventory.items() %}
+<div class="row col-md-5 col-md-offset-4 top-buffer">
+	<p>Current Inventory Item: {{value}}</p>
+</div>
+{% endfor %}
+
+{% for key, value in stocks.items() %}
+<div class="row col-md-5 col-md-offset-4 top-buffer">
+	<input type="radio" name="newitem" form="newitem" value="{{key}}">New Item: {{value}}</p>
+</div>
+{% endfor %}
+<div class="row col-md-5 col-md-offset-4 top-buffer">
+		<button type="submit" form="newitem" class="btn btn-default">Request</button>
+	</div>
+
+</body>
+</html>
